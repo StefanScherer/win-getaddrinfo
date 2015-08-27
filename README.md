@@ -9,11 +9,11 @@ See the [MSDN getaddrinfo](https://msdn.microsoft.com/en-us/library/windows/desk
 ## Test with AI_ADDRCONFIG hint flag
 
 ```
-getaddrinfo.exe registry.npmjs.org 0 AI_ADDRCONFIG
+getaddrinfo.exe registry.npmjs.org 80 AI_ADDRCONFIG
 ```
 
 ## Test without AI_ADDRCONFIG hint flag
 
 ```
-getaddrinfo.exe registry.npmjs.org 0 0
+getaddrinfo.exe registry.npmjs.org 80 0
 ```
