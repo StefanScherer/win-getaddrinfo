@@ -32,12 +32,12 @@ int __cdecl main(int argc, char **argv)
     DWORD ipbufferlength = 46;
 
     // Validate the parameters
-    if (argc != 3) {
+    if (argc != 4) {
         printf("usage: %s <hostname> <servicename>\n", argv[0]);
         printf("getaddrinfo provides protocol-independent translation\n");
         printf("   from an ANSI host name to an IP address\n");
         printf("%s example usage\n", argv[0]);
-        printf("   %s www.contoso.com 0\n", argv[0]);
+        printf("   %s www.contoso.com 0 AI_ADDRCONFIG|0\n", argv[0]);
         return 1;
     }
 
@@ -55,11 +55,15 @@ int __cdecl main(int argc, char **argv)
     hints.ai_family = AF_UNSPEC;
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_protocol = IPPROTO_TCP;
-    hints.ai_flags = AI_ADDRCONFIG;
+
+    if (! strcmp(argv[3], "AI_ADDRCONFIG")) {
+      hints.ai_flags = AI_ADDRCONFIG;
+    }
 
     printf("Calling getaddrinfo with following parameters:\n");
     printf("\tnodename = %s\n", argv[1]);
-    printf("\tservname (or port) = %s\n\n", argv[2]);
+    printf("\tservname (or port) = %s\n", argv[2]);
+    printf("\thints.ai_flags = 0x%x\n\n", hints.ai_flags);
 
 //--------------------------------
 // Call getaddrinfo(). If the call succeeds,
