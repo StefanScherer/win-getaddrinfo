@@ -1,7 +1,7 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{8BC8CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "win-hello-static", "win-hello-static.vcxproj", "{B13702AD-ABFB-343A-A199-8E24837244A3}"
+Project("{8BC8CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "getaddrinfo", "getaddrinfo.vcxproj", "{B13702AD-ABFB-343A-A199-8E24837244A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
