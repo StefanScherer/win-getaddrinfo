@@ -19,7 +19,7 @@ int __cdecl main(int argc, char **argv)
     DWORD dwRetval;
 
     int i = 1;
-    
+
     struct addrinfo *result = NULL;
     struct addrinfo *ptr = NULL;
     struct addrinfo hints;
@@ -55,11 +55,12 @@ int __cdecl main(int argc, char **argv)
     hints.ai_family = AF_UNSPEC;
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_protocol = IPPROTO_TCP;
+    hints.ai_flags = AI_ADDRCONFIG;
 
     printf("Calling getaddrinfo with following parameters:\n");
     printf("\tnodename = %s\n", argv[1]);
     printf("\tservname (or port) = %s\n\n", argv[2]);
-    
+
 //--------------------------------
 // Call getaddrinfo(). If the call succeeds,
 // the result variable will hold a linked list
@@ -73,7 +74,7 @@ int __cdecl main(int argc, char **argv)
     }
 
     printf("getaddrinfo returned success\n");
-    
+
     // Retrieve each address and print out the hex bytes
     for(ptr=result; ptr != NULL ;ptr=ptr->ai_next) {
 
@@ -96,17 +97,17 @@ int __cdecl main(int argc, char **argv)
                 // sockaddr_ipv6 = (struct sockaddr_in6 *) ptr->ai_addr;
                 // printf("\tIPv6 address %s\n",
                 //    InetNtop(AF_INET6, &sockaddr_ipv6->sin6_addr, ipstringbuffer, 46) );
-                
+
                 // We use WSAAddressToString since it is supported on Windows XP and later
                 sockaddr_ip = (LPSOCKADDR) ptr->ai_addr;
                 // The buffer length is changed by each call to WSAAddresstoString
                 // So we need to set it for each iteration through the loop for safety
                 ipbufferlength = 46;
-                iRetval = WSAAddressToString(sockaddr_ip, (DWORD) ptr->ai_addrlen, NULL, 
+                iRetval = WSAAddressToString(sockaddr_ip, (DWORD) ptr->ai_addrlen, NULL,
                     ipstringbuffer, &ipbufferlength );
                 if (iRetval)
                     printf("WSAAddressToString failed with %u\n", WSAGetLastError() );
-                else    
+                else
                     printf("\tIPv6 address %s\n", ipstringbuffer);
                 break;
             case AF_NETBIOS:
