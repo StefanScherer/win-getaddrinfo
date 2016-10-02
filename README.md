@@ -17,3 +17,14 @@ getaddrinfo.exe registry.npmjs.org 80 AI_ADDRCONFIG
 ```
 getaddrinfo.exe registry.npmjs.org 80 0
 ```
+
+## Build exe with Windows Docker containers
+
+Spin up a Win2016 VM and set `DOCKER_HOST` environment variable to it.
+Then run
+
+```bash
+./build.sh
+```
+
+The final (debug) binary `getaddrinfo.exe` will be copied back to your host.
