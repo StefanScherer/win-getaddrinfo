@@ -27,4 +27,4 @@ Then run
 ./build.sh
 ```
 
-The final (debug) binary `getaddrinfo.exe` will be copied back to your host.
+The final static release binary `getaddrinfo.exe` will be copied back to your host.

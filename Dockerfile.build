@@ -1,5 +1,3 @@
 FROM builder
 
 COPY . /code
-
-CMD ["msbuild", "getaddrinfo.sln"]
